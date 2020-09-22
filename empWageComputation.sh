@@ -9,14 +9,11 @@ PART_TIME_HOURS=4
 attendence=$((RANDOM%3))
 
 
-if [[ $attendence -eq 1 ]]
-then
-	dailyWages=$(($WAGES_PER_HOUR * $FULL_DAY_WORKHOURS));
+case $attendence in
+	1)Wages=$(($WAGES_PER_HOUR * $FULL_DAY_WORKHOURS));
 	
-elif [[ $attendence -eq 2 ]]
-then
-	partTimeWages=$(($WAGES_PER_HOUR * $PART_TIME_HOURS))
-else
-	echo "Employee Absent";
-fi
+	2)Wages=$(($WAGES_PER_HOUR * $PART_TIME_HOURS));
 
+	*)Wages=0
+esac
+	echo $attendence 
