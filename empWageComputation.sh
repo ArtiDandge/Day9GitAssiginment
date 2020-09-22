@@ -5,15 +5,18 @@ echo "Welcome to Employee Wage Computation Program"
 #Constants
 WAGES_PER_HOUR=20
 FULL_DAY_WORKHOURS=8
-
-attendence=$((RANDOM%2))
+PART_TIME_HOURS=4
+attendence=$((RANDOM%3))
 
 
 if [[ $attendence -eq 1 ]]
 then
-	echo "Employee Present"
-	dailyWages=$(($WAGES_PER_HOUR * $FULL_DAY_WORKHOURS))
+	dailyWages=$(($WAGES_PER_HOUR * $FULL_DAY_WORKHOURS));
+	
+elif [[ $attendence -eq 2 ]]
+then
+	partTimeWages=$(($WAGES_PER_HOUR * $PART_TIME_HOURS))
 else
-	echo "Employee Absent"
+	echo "Employee Absent";
 fi
 
