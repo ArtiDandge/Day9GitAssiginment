@@ -42,6 +42,5 @@ do
 	#getting store per day work hours in Dictionary
 	TotalWages[$totalWorkingDays]=$(($Wages + $dailyWages));
 done
-
-echo "Keys " ${!TotalWages[@]}
-echo "Wages " ${TotalWages[@]}
+echo "keys" ${!TotalWages[@]}
+echo "Wages" ${TotalWages[@]} 
