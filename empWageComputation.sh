@@ -17,17 +17,19 @@ declare -i workDonePerDay
 totalWorkingDays=0;
 totalWorkingHours=0;
 
-case $attendence in
-	1)dailyWages=$(($WAGES_PER_HOUR * $FULL_DAY_WORKHOURS));;
-	
-	2)dailyWages=$(($WAGES_PER_HOUR * $PART_TIME_HOURS));;
-	
-	*)dailyWages=0
-	
-esac
-	echo $dailyWages
 
-MonthlyWage=$(($dailyWages * $DAYS_PER_MONTH));
+function getWorkHours() {
+	case $1 in 
+		1) workHours=4;;
+		2) workHours=8;;
+		*) workHours=0;;
+	esac
+	echo $workHours;
+}
+
+getWorkHours $attendence
+dailyWages=$(($WAGES_PER_HOUR * $workHours))
+monthlyWages=$(($dailyWages * $DAYS_PER_MONTH))
 
 
 while [[ $totalWorkingHours -lt $MAX_WORKING_HOURS && $totalWorkingDays -lt $MAX_WORKING_DAYS ]]
