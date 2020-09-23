@@ -13,7 +13,7 @@ MAX_WORKING_HOURS=100;
 attendence=$((RANDOM%3))
 
 #Variables
-declare -i workDonePerDay
+
 totalWorkingDays=0;
 totalWorkingHours=0;
 
@@ -36,8 +36,11 @@ while [[ $totalWorkingHours -lt $MAX_WORKING_HOURS && $totalWorkingDays -lt $MAX
 do
 	((totalWorkingDays++));
 	((totalWorkingHours++));
-	Wages=$(($WAGES_PER_HOUR * ($totalWorkingDays * $totalWorkingHours)));
+	workDonePerDay=$(( $(getWorkHours $attendence) ))
+	totalWorkingHours=$((totalWorkingHours +  workDonePerDay))
+	Wages=$(($WAGES_PER_HOUR * $totalWorkingHours));
 	#getting store per day work hours in Dictionary
-	TotalWages[$totalWorkingDays]=$Wages;
+	TotalWages=$(($Wages + $dailyWages));
 done
-	echo ${TotalWages[@]}
+
+echo $TotalWages
