@@ -17,7 +17,7 @@ declare -A TotalWages
 totalWorkingDays=0;
 totalWorkingHours=0;
 
-
+#function to get work hours
 function getWorkHours() {
 	case $1 in 
 		1) workHours=4;;
@@ -27,11 +27,12 @@ function getWorkHours() {
 	echo $workHours;
 }
 
+#display daily and monthly wage
 getWorkHours $attendence
 dailyWages=$(($WAGES_PER_HOUR * $workHours))
 monthlyWages=$(($dailyWages * $DAYS_PER_MONTH))
 
-
+#compute wages till it reachec max condition
 while [[ $totalWorkingHours -lt $MAX_WORKING_HOURS && $totalWorkingDays -lt $MAX_WORKING_DAYS ]]
 do
 	((totalWorkingDays++));
@@ -42,5 +43,6 @@ do
 	#getting store per day work hours in Dictionary
 	TotalWages[$totalWorkingDays]=$(($Wages + $dailyWages));
 done
+
 echo "keys" ${!TotalWages[@]}
 echo "Wages" ${TotalWages[@]} 
